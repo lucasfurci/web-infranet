@@ -75,6 +75,16 @@
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
   }
   #mobile-menu { transition: max-height 0.35s ease, opacity 0.25s ease; }
+
+  /* Server room illustration */
+  .server-room-bg .led { animation: led-blink 2.4s ease-in-out infinite; }
+  .server-room-bg .led:nth-of-type(2n) { animation-duration: 3.1s; animation-delay: .4s; }
+  .server-room-bg .led:nth-of-type(3n) { animation-duration: 1.7s; animation-delay: .9s; }
+  .server-room-bg .led:nth-of-type(5n) { animation-duration: 2.8s; animation-delay: 1.3s; }
+  @keyframes led-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.15; }
+  }
 </style>
 </head>
 
@@ -135,6 +145,76 @@
 
 <!-- ============ HERO SECTION ============ -->
 <section class="hero-bg grid-overlay relative pt-32 pb-20 md:pt-44 md:pb-28 px-5 sm:px-8 lg:px-10 overflow-hidden">
+
+  <!-- Ilustración decorativa: sala de racks con servidores y switches -->
+  <div aria-hidden="true" class="server-room-bg pointer-events-none select-none absolute inset-0 z-0 overflow-hidden [mask-image:linear-gradient(to_left,black_0%,black_30%,transparent_80%)] [-webkit-mask-image:linear-gradient(to_left,black_0%,black_30%,transparent_80%)]">
+    <svg class="absolute bottom-0 right-0 h-[60%] sm:h-[80%] lg:h-full w-auto max-w-none opacity-40" viewBox="0 0 900 320" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <symbol id="serverUnit" viewBox="0 0 90 24">
+          <rect x="0" y="0" width="90" height="22" rx="1.5" fill="#162a56" stroke="#2d4a8f" stroke-width="0.6"/>
+          <circle class="led led-green" cx="7" cy="11" r="1.6" fill="#25D366"/>
+          <circle class="led led-blue" cx="13" cy="11" r="1.6" fill="#5b8def"/>
+          <rect x="22" y="5" width="58" height="1" fill="#2d4a8f"/>
+          <rect x="22" y="10" width="58" height="1" fill="#2d4a8f"/>
+          <rect x="22" y="15" width="58" height="1" fill="#2d4a8f"/>
+        </symbol>
+        <symbol id="rackFrame" viewBox="0 0 90 270">
+          <rect x="0" y="0" width="90" height="270" rx="4" fill="#0f1e42" stroke="#2d4a8f" stroke-width="1.5"/>
+          <use href="#serverUnit" x="0" y="6"/>
+          <use href="#serverUnit" x="0" y="32"/>
+          <use href="#serverUnit" x="0" y="58"/>
+          <use href="#serverUnit" x="0" y="84"/>
+          <use href="#serverUnit" x="0" y="110"/>
+          <use href="#serverUnit" x="0" y="136"/>
+          <use href="#serverUnit" x="0" y="162"/>
+          <use href="#serverUnit" x="0" y="188"/>
+          <use href="#serverUnit" x="0" y="214"/>
+          <use href="#serverUnit" x="0" y="240"/>
+        </symbol>
+        <symbol id="switchUnit" viewBox="0 0 90 26">
+          <rect x="0" y="0" width="90" height="24" rx="3" fill="#0f1e42" stroke="#2d4a8f" stroke-width="1.5"/>
+          <rect x="14" y="5" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="20" y="5" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="26" y="5" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="32" y="5" width="4" height="4" class="led" fill="#f5a623"/>
+          <rect x="38" y="5" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="44" y="5" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="50" y="5" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="56" y="5" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="62" y="5" width="4" height="4" class="led" fill="#f5a623"/>
+          <rect x="68" y="5" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="74" y="5" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="14" y="15" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="20" y="15" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="26" y="15" width="4" height="4" class="led" fill="#f5a623"/>
+          <rect x="32" y="15" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="38" y="15" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="44" y="15" width="4" height="4" class="led" fill="#f5a623"/>
+          <rect x="50" y="15" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="56" y="15" width="4" height="4" class="led" fill="#5b8def"/>
+          <rect x="62" y="15" width="4" height="4" class="led" fill="#25D366"/>
+          <rect x="68" y="15" width="4" height="4" class="led" fill="#f5a623"/>
+          <rect x="74" y="15" width="4" height="4" class="led" fill="#5b8def"/>
+        </symbol>
+      </defs>
+
+      <!-- piso -->
+      <line x1="0" y1="302" x2="900" y2="302" stroke="#254a99" stroke-width="1" opacity="0.5"/>
+
+      <!-- racks -->
+      <use href="#rackFrame" x="10" y="32"/>
+      <use href="#rackFrame" x="120" y="32"/>
+      <use href="#rackFrame" x="230" y="32"/>
+      <use href="#switchUnit" x="230" y="4"/>
+      <use href="#rackFrame" x="340" y="32"/>
+      <use href="#rackFrame" x="450" y="32"/>
+      <use href="#rackFrame" x="560" y="32"/>
+      <use href="#switchUnit" x="560" y="4"/>
+      <use href="#rackFrame" x="670" y="32"/>
+      <use href="#rackFrame" x="780" y="32"/>
+    </svg>
+  </div>
+
   <div class="max-w-7xl mx-auto relative z-10">
     <div class="max-w-3xl">
       <span class="inline-flex items-center gap-2 bg-white/10 border border-white/15 text-brand-green text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-6">
@@ -236,9 +316,9 @@
         <div class="w-14 h-14 rounded-xl bg-navy-900 flex items-center justify-center mb-6 group-hover:bg-brand-green transition-colors duration-300">
           <i class="fa-solid fa-screwdriver-wrench text-white text-xl"></i>
         </div>
-        <h3 class="text-xl font-bold text-navy-950 mb-3">Soporte Técnico Express</h3>
+        <h3 class="text-xl font-bold text-navy-950 mb-3">Mantenimiento Preventivo y Seguridad de Equipos IT</h3>
         <p class="text-slate-500 leading-relaxed">
-          Mantenimiento preventivo y correctivo de hardware. Diagnóstico ágil y solución en el mismo día para minimizar el tiempo de inactividad de su empresa.
+          Realizamos tareas preventivas para que los equipos de su empresa funcionen de forma estable, segura y con el mejor rendimiento posible, evitando interrupciones en la operación diaria.
         </p>
       </div>
 
@@ -371,7 +451,7 @@
           <li><a href="#servicios" class="hover:text-brand-green transition-colors">Redes y Cableado Estructurado</a></li>
           <li><a href="#servicios" class="hover:text-brand-green transition-colors">Servidores y Almacenamiento NAS</a></li>
           <li><a href="#servicios" class="hover:text-brand-green transition-colors">Backups y Ciberseguridad</a></li>
-          <li><a href="#servicios" class="hover:text-brand-green transition-colors">Soporte Técnico Express</a></li>
+          <li><a href="#servicios" class="hover:text-brand-green transition-colors">Mantenimiento Preventivo y Seguridad de Equipos IT</a></li>
           <li><a href="#servicios" class="hover:text-brand-green transition-colors">Despliegue de Herramientas Ticketing/Monitoreo</a></li>
           <li><a href="#servicios" class="hover:text-brand-green transition-colors">Desarrollo Web</a></li>
         </ul>
@@ -401,7 +481,7 @@
         <h4 class="text-white font-semibold mb-4">Área de cobertura</h4>
         <p class="text-sm text-slate-400 leading-relaxed flex items-start gap-2">
           <i class="fa-solid fa-location-dot text-brand-green mt-0.5"></i>
-          <span>Atención presencial en CABA y AMBA. Soporte remoto disponible para toda la región.</span>
+          <span>Atención presencial en CABA y AMBA. Soporte remoto disponible para todo el pais.</span>
         </p>
       </div>
 
